@@ -6,6 +6,7 @@ import (
 
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
+	"github.com/hyperjiang/gin-skeleton/config"
 	"github.com/hyperjiang/gin-skeleton/model"
 )
 
@@ -27,7 +28,7 @@ func init() {
 	var err error
 	authMiddleware, err = jwt.New(&jwt.GinJWTMiddleware{
 		Realm:       "gin-skeleton",
-		Key:         []byte("secret key"),
+		Key:         []byte(config.Server.KeySecure),
 		Timeout:     time.Hour,
 		MaxRefresh:  time.Hour,
 		IdentityKey: identityKey,

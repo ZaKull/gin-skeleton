@@ -24,10 +24,12 @@ type ServerConfig struct {
 	Mode               string
 	Version            string
 	StaticDir          string `yaml:"static_dir"`
+	Cache              string `yaml:"cache"`
 	ViewDir            string `yaml:"view_dir"`
 	LogDir             string `yaml:"log_dir"`
 	UploadDir          string `yaml:"upload_dir"`
 	MaxMultipartMemory int64  `yaml:"max_multipart_memory"`
+	KeySecure          string `yaml:"key_secure"`
 }
 
 // DatabaseConfig is the database config

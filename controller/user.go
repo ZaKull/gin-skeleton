@@ -56,6 +56,7 @@ func (ctrl *UserController) Signup(c *gin.Context) {
 		user.Name = form.Name
 		user.Email = form.Email
 		user.Password = form.Password
+		user.RoleId = 3
 
 		if err := user.Signup(); err != nil {
 			c.JSON(http.StatusOK, gin.H{"error": err.Error()})

@@ -1,16 +1,18 @@
 server:
-  version: v0.1
+  version: v0.1.1
   addr: :8080
   mode: debug
   static_dir: ./public
   view_dir: ./view
   log_dir: ./log
   upload_dir: ./storage
+  cache: ./cache
   max_multipart_memory: 10
+  key_scure: secret-key-string
 
 database:
   dialect: mysql
-  datasource: root:@tcp(localhost:3306)/gin?charset=utf8mb4&timeout=10s&parseTime=True
+  datasource: root:pass@tcp(localhost:3308)/octvienna?charset=utf8mb4&timeout=10s&parseTime=True
   dir: sql
   table: migrations
   max_idle_conns: 2

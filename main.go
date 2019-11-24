@@ -2,12 +2,17 @@ package main
 
 import (
 	"flag"
+	//"log"
 	"path/filepath"
 
+	"github.com/dvwright/xss-mw"
+	"github.com/ekyoung/gin-nice-recovery"
 	"github.com/gin-gonic/gin"
 	_ "github.com/golang/glog"
 	"github.com/hyperjiang/gin-skeleton/config"
 	"github.com/hyperjiang/gin-skeleton/router"
+	//"github.com/gin-gonic/autotls"
+	//"golang.org/x/crypto/acme/autocert"
 )
 
 func main() {
@@ -19,7 +24,21 @@ func main() {
 		gin.DisableConsoleColor()
 	}
 
-	app := gin.Default()
+	app := gin.New()
+	app.Use(gin.Logger())
+	app.Use(gin.Recovery())
+
+	// Install nice.Recovery, passing the handler to call after recovery
+	app.Use(nice.Recovery(func(c *gin.Context, err interface{}) {
+		c.HTML(500, "error500.html", gin.H{
+			"title":   "Error",
+			"content": err,
+		})
+	}))
+
+	//Xss Middleware menos campo password
+	var xssMdlwr xss.XssMw
+	app.Use(xssMdlwr.RemoveXss())
 
 	app.Static("/images", filepath.Join(config.Server.StaticDir, "img"))
 	app.StaticFile("/favicon.ico", filepath.Join(config.Server.StaticDir, "img/favicon.ico"))
@@ -27,7 +46,17 @@ func main() {
 	app.MaxMultipartMemory = config.Server.MaxMultipartMemory << 20
 
 	router.Route(app)
+	/* Auto tsl, activar cuando este en ip publica.
 
+	m := autocert.Manager{
+		Prompt:     autocert.AcceptTOS,
+		HostPolicy: autocert.HostWhitelist("zakull.test", "app.zakull.test"),
+		Cache:      autocert.DirCache(config.Server.Cache),
+	}
+
+	log.Fatal(autotls.RunWithManager(app, &m))
+	*/
 	// Listen and Serve
 	app.Run(*addr)
+
 }

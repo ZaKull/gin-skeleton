@@ -31,7 +31,7 @@ Edit the `config.yml` with your own config
 **Create the database first**
 
 ```
-CREATE DATABASE IF NOT EXISTS `gin` DEFAULT CHARACTER SET utf8mb4;
+CREATE DATABASE IF NOT EXISTS `octvienna` DEFAULT CHARACTER SET utf8mb4;
 ```
 
 
