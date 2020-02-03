@@ -7,6 +7,8 @@ require (
 	github.com/appleboy/gin-jwt/v2 v2.6.2
 	github.com/dvwright/xss-mw v0.0.0-20191029162136-7a0dab86d8f6 // indirect
 	github.com/ekyoung/gin-nice-recovery v0.0.0-20160510022553-1654dca486db // indirect
+	github.com/gin-contrib/cors v1.3.0 // indirect
+	github.com/gin-contrib/secure v0.0.0-20190913150500-0a1d39a681e3 // indirect
 	github.com/gin-gonic/autotls v0.0.0-20190904071645-689297a2fe35
 	github.com/gin-gonic/gin v1.4.1-0.20191101024740-db9174ae0c25
 	github.com/go-errors/errors v1.0.1 // indirect

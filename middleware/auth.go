@@ -29,8 +29,8 @@ func init() {
 	authMiddleware, err = jwt.New(&jwt.GinJWTMiddleware{
 		Realm:       "gin-skeleton",
 		Key:         []byte(config.Server.KeySecure),
-		Timeout:     time.Hour,
-		MaxRefresh:  time.Hour,
+		Timeout:     time.Hour * 8,
+		MaxRefresh:  time.Hour * 8,
 		IdentityKey: identityKey,
 		SendCookie:  true,
 		PayloadFunc: func(data interface{}) jwt.MapClaims {
@@ -85,7 +85,7 @@ func init() {
 		// TokenLookup: "cookie:token",
 
 		// TokenHeadName is a string in the header. Default value is "Bearer"
-		TokenHeadName: "Bearer",
+		TokenHeadName: "Pericles",
 
 		// TimeFunc provides the current time. You can override it to use another time value. This is useful for testing or if your server uses a different time zone than your tokens.
 		TimeFunc: time.Now,

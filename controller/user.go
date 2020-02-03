@@ -47,7 +47,7 @@ func (ctrl *UserController) Signup(c *gin.Context) {
 	if err := c.ShouldBind(&form); err == nil {
 
 		if form.Password != form.Password2 {
-			c.JSON(http.StatusOK, gin.H{"error": "Password does not match with conform password"})
+			c.JSON(http.StatusOK, gin.H{"error3": "Password does not match with conform password"})
 			return
 		}
 
@@ -59,11 +59,11 @@ func (ctrl *UserController) Signup(c *gin.Context) {
 		user.RoleId = 3
 
 		if err := user.Signup(); err != nil {
-			c.JSON(http.StatusOK, gin.H{"error": err.Error()})
+			c.JSON(http.StatusOK, gin.H{"error2": err.Error()})
 		} else {
 			c.JSON(http.StatusOK, user)
 		}
 	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"error1": err.Error()})
 	}
 }
