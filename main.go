@@ -69,7 +69,8 @@ func main() {
 	var xssMdlwr xss.XssMw
 	app.Use(xssMdlwr.RemoveXss())
 
-	app.Static("/images", filepath.Join(config.Server.StaticDir, "img"))
+	app.Static("/img", filepath.Join(config.Server.StaticDir, "img"))
+	app.Static("/css", filepath.Join(config.Server.StaticDir, "css"))
 	app.StaticFile("/favicon.ico", filepath.Join(config.Server.StaticDir, "img/favicon.ico"))
 	app.LoadHTMLGlob(config.Server.ViewDir + "/*")
 	app.MaxMultipartMemory = config.Server.MaxMultipartMemory << 20

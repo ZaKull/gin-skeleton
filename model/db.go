@@ -1,13 +1,12 @@
 package model
 
 import (
-	"sync"
-
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
 	"github.com/hyperjiang/gin-skeleton/config"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql" // mysql driver
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+	"sync"
 )
 
 // DBInstance is a singleton DB instance
@@ -30,19 +29,21 @@ func (i *DBInstance) Instance() interface{} {
 }
 
 func dbInit() interface{} {
-	db, err := gorm.Open(config.Database.Dialect, config.Database.DSN)
+	db, err := gorm.Open(mysql.Open(config.Database.DSN), &gorm.Config{})
+
 	if err != nil {
 		glog.Fatalf("Cannot connect to database: %v", err)
 	}
 
 	// sql log
 	if config.Server.Mode != gin.ReleaseMode {
-		db.LogMode(true)
+		db.Logger.LogMode(1)
+
 	}
 
-	stdDB := db.DB()
-	stdDB.SetMaxIdleConns(config.Database.MaxIdleConns)
-	stdDB.SetMaxOpenConns(config.Database.MaxOpenConns)
+	sqlDB, err := db.DB()
+	sqlDB.SetMaxIdleConns(config.Database.MaxIdleConns)
+	sqlDB.SetMaxOpenConns(config.Database.MaxOpenConns)
 
 	return db
 }

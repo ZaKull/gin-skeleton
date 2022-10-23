@@ -16,6 +16,7 @@ var ConfigFile = "./config.yml"
 type GlobalConfig struct {
 	Server   ServerConfig   `yaml:"server"`
 	Database DatabaseConfig `yaml:"database"`
+	Twitter  TwitterConfig  `yaml:"twitter"`
 }
 
 // ServerConfig is the server config
@@ -40,11 +41,21 @@ type DatabaseConfig struct {
 	MaxOpenConns int    `yaml:"max_open_conns"`
 }
 
+// DatabaseConfig is the database config
+type TwitterConfig struct {
+	ClientID     string `yaml:"client_id"`
+	ClientSecret string `yaml:"client_secret"`
+	ApiKey       string `yaml:"api_key"`
+	ApiSecret    string `yaml:"api_secret"`
+	BearerToken  string `yaml:"bearer_token"`
+}
+
 // global configs
 var (
 	Global   GlobalConfig
 	Server   ServerConfig
 	Database DatabaseConfig
+	Twitter  TwitterConfig
 )
 
 // Load config from file
@@ -63,6 +74,7 @@ func Load(file string) (GlobalConfig, error) {
 
 	Server = Global.Server
 	Database = Global.Database
+	Twitter = Global.Twitter
 
 	// set log dir flag for glog
 	flag.CommandLine.Set("log_dir", Server.LogDir)

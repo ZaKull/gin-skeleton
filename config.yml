@@ -1,5 +1,5 @@
 server:
-  version: v0.1.1
+  version: v0.2.7
   addr: :8080
   mode: debug
   static_dir: ./public
@@ -12,8 +12,16 @@ server:
 
 database:
   dialect: mysql
-  datasource: root:pass@tcp(localhost:3308)/octvienna?charset=utf8mb4&timeout=10s&parseTime=True
+  datasource: hearcx:Oco<EF%@4x[.@k%q@tcp(35.227.169.253:3306)/hearcx?charset=utf8mb4&timeout=10s&parseTime=True
   dir: sql
   table: migrations
   max_idle_conns: 2
   max_open_conns: 16
+
+twitter:
+  client_id: ve07pU9n83to8SUz2UJ4SfiFm
+  client_secret: HX4eD37VxffDkFTW7HdWeQih1Dt07u8Ncan1WTn7SGkvtwtz1K
+  api_key: 219288876-TMU4jMl3xKnHOJIm78tfAfTe4A2h9vSyPOp681Ay
+  api_secret: Zt5HUSt6YQfvC30dwggTqou6PSmkss5VJlUUv8gWVyBGJ
+  bearer_token: AAAAAAAAAAAAAAAAAAAAAO%2FciAEAAAAAd7nQeZWcwby4r0gqdYW8Ohp1jZY%3D0WLmYauuSpBnNoX4axq1RILXhObZXlQDWvu83yT1zoumQpU8g6
+
